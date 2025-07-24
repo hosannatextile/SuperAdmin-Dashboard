@@ -1,3 +1,4 @@
+import 'package:admin/API/api.dart';
 import 'package:admin/controllers/user_controller.dart';
 import 'package:admin/responsive.dart';
 import 'package:admin/screens/dashboard/components/header.dart';
@@ -165,6 +166,10 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
                                        }
                                     }),
                               ),
+                              // IconButton(onPressed: ()
+                              // {
+                              //   ApiHelper().deleteUserById(entry.sId!);
+                              // }, icon: Icon(Icons.delete))
                             ],
                           ),
                         ),

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:html' as html;
 
 import 'package:admin/API/api_constant.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -37,7 +38,6 @@ class ApiHelper{
   }
 
 
-
 Future<html.HttpRequest> createUser(
   html.File profileImage,
   String? fullName,
@@ -49,67 +49,84 @@ Future<html.HttpRequest> createUser(
   String? password,
   String? username,
 ) async {
-  final Map<String, String> defaultHeaders = {
-    'Authorization': 'Bearer ${ApiConstant.loginData!.accessToken!}',
-  };
+  Future<html.HttpRequest> sendRequest(String accessToken) async {
+    final Uri uri = Uri.parse(ApiConstant.getAllUsers); // Fix this endpoint
+    final Map<String, String> headers = {
+      'Authorization': 'Bearer $accessToken',
+    };
 
-  // Use correct endpoint for creating user (not getAllUsers)
-  final Uri uri = Uri.parse(ApiConstant.getAllUsers); // Fix this endpoint
+    final formData = html.FormData();
+    if (fullName != null) formData.append('fullName', fullName);
+    if (phoneNo != null) formData.append('mobileNumber', phoneNo);
+    if (cnic != null) formData.append('cnic', cnic);
+    if (email != null) formData.append('email', email);
+    if (department != null) formData.append('department', department);
+    if (role != null) formData.append('role', role);
+    if (username != null) formData.append('username', username);
+    if (password != null) formData.append('password', password);
+    formData.append('status', "active");
+    formData.appendBlob('profilePhoto', profileImage);
 
-  // Create a FormData object for the request
-  final formData = html.FormData();
+    final request = html.HttpRequest();
+    request.open('POST', uri.toString());
 
-  // Add the form fields (with null checks)
-  if (fullName != null) formData.append('fullName', fullName);
-  if (phoneNo != null) formData.append('mobileNumber', phoneNo);
-  if (cnic != null) formData.append('cnic', cnic);
-  if (email != null) formData.append('email', email);
-  if (department != null) formData.append('department', department);
-  if (role != null) formData.append('role', role);
-  if (username != null) formData.append('username', username);
-  if (password != null) formData.append('password', password);
-  formData.append('status', "active");
+    for (var key in headers.keys) {
+      request.setRequestHeader(key, headers[key]!);
+    }
 
-  // Add the file to the form data
-  formData.appendBlob('profilePhoto', profileImage);
+    request.timeout = 30000;
+    final completer = Completer<html.HttpRequest>();
 
-  // Create the HTTP request
-  final request = html.HttpRequest();
-  request.open('POST', uri.toString());
+    request.onLoadEnd.listen((event) {
+      if (request.status == 200 || request.status == 201) {
+        completer.complete(request);
+      } else {
+        completer.completeError({
+          'status': request.status,
+          'response': request.responseText,
+        });
+      }
+    });
 
-  // Set headers
-  for (var key in defaultHeaders.keys) {
-    request.setRequestHeader(key, defaultHeaders[key]!);
+    request.onTimeout.listen((event) {
+      completer.completeError({'status': 408, 'response': 'Request timeout'});
+    });
+
+    request.onError.listen((event) {
+      completer.completeError({'status': 500, 'response': 'Network error'});
+    });
+
+    request.send(formData);
+
+    return completer.future;
   }
 
-  // Set timeout
-  request.timeout = 30000; // 30 seconds
+  try {
+    return await sendRequest(ApiConstant.loginData!.accessToken!);
+  } catch (error) {
+    if (error is Map<String, dynamic> && error['status'] == 403) {
+      // Attempt token refresh
+      final refreshResponse = await html.HttpRequest.request(
+        ApiConstant.refreshUrl,
+        method: 'POST',
+        requestHeaders: {'Content-Type': 'application/json'},
+        sendData: jsonEncode({
+          'refreshToken': ApiConstant.loginData?.refreshToken,
+        }),
+      );
 
-  Completer<html.HttpRequest> completer = Completer<html.HttpRequest>();
+      if (refreshResponse.status == 200) {
+        final data = jsonDecode(refreshResponse.responseText!);
+        ApiConstant.loginData?.accessToken = data['accessToken'];
 
-  // Handle response when request is completed
-  request.onLoadEnd.listen((event) {
-    if (request.status == 200 || request.status == 201) {
-      completer.complete(request);
+        return await sendRequest(data['accessToken']);
+      } else {
+        throw 'Token refresh failed. Status: ${refreshResponse.status}';
+      }
     } else {
-      completer.completeError('Failed to create user. Status: ${request.status}, Response: ${request.responseText}');
+      throw 'Failed to create user. Error: $error';
     }
-  });
-
-  // Handle timeout
-  request.onTimeout.listen((event) {
-    completer.completeError('Request timeout');
-  });
-
-  // Handle network errors
-  request.onError.listen((event) {
-    completer.completeError('Network error occurred');
-  });
-
-  // Send the request with the form data
-  request.send(formData);
-
-  return completer.future;
+  }
 }
 
  Future<http.Response> getAllUsers() async {
@@ -303,5 +320,45 @@ Future<http.Response> updateUserStatus(String userId, String status) async {
   }
 }
 
+Future<html.HttpRequest> deleteUserById(String userId) async {
+  final Uri uri = Uri.parse('${ApiConstant.baseUrl}users/users/$userId');
+
+  final Map<String, String> headers = {
+    'Authorization': 'Bearer ${ApiConstant.loginData!.accessToken!}',
+    'Content-Type': 'application/json',
+  };
+
+  final request = html.HttpRequest();
+  request.open('DELETE', uri.toString());
+
+  for (var key in headers.keys) {
+    request.setRequestHeader(key, headers[key]!);
+  }
+
+  request.timeout = 15000; // optional timeout
+
+  final completer = Completer<html.HttpRequest>();
+
+  request.onLoadEnd.listen((event) {
+    if (request.status == 200) {
+      completer.complete(request);
+    
+    } else {
+      completer.completeError('Failed to delete user. Status: ${request.status}, Response: ${request.responseText}');
+    }
+  });
+
+  request.onError.listen((event) {
+    completer.completeError('Network error occurred');
+  });
+
+  request.onTimeout.listen((event) {
+    completer.completeError('Request timeout');
+  });
+
+  request.send(); // DELETE requests usually have no body
+
+  return completer.future;
+}
 
 }

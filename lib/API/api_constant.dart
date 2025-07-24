@@ -7,6 +7,7 @@ class ApiConstant {
  static String baseUrl="https://desk-production.up.railway.app/api/";
 
  static String loginUrl="${baseUrl}login/emaillogin";
+  static String refreshUrl="${baseUrl}login/refresh";
  static String createTicket="${baseUrl}ticket";
  static String createProof="${baseUrl}proof";
  static String getTicketByUserId="${baseUrl}ticket/summary/";
