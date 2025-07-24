@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 8),
                    Text(
-                    "Sign in with your CNIC and password",
+                    "Sign in with your Email and password",
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white,fontSize: 18),
                   ),
