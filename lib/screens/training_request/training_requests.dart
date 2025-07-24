@@ -15,41 +15,41 @@ class TrainingRequestScreen extends StatefulWidget {
 class _TrainingRequestScreenState extends State<TrainingRequestScreen> {
   String assignedDepartment = 'Select Department';
   final List<Map<String, String>> data = [
-    {
-      'topic': 'Fire Saftey',
-      'department': 'Safety',
-      'requester': 'Imran',
-      'status': 'Pending',
+    // {
+    //   'topic': 'Fire Saftey',
+    //   'department': 'Safety',
+    //   'requester': 'Imran',
+    //   'status': 'Pending',
       
-    },
-    {
-      'topic': 'Fire Saftey',
-      'department': 'Safety',
-      'requester': 'Imran',
-      'status': 'Approve',
+    // },
+    // {
+    //   'topic': 'Fire Saftey',
+    //   'department': 'Safety',
+    //   'requester': 'Imran',
+    //   'status': 'Approve',
       
-    },
-    {
-      'topic': 'Fire Saftey',
-      'department': 'Safety',
-      'requester': 'Imran',
-      'status': 'Approve',
+    // },
+    // {
+    //   'topic': 'Fire Saftey',
+    //   'department': 'Safety',
+    //   'requester': 'Imran',
+    //   'status': 'Approve',
       
-    },
-    {
-      'topic': 'Fire Saftey',
-      'department': 'Safety',
-      'requester': 'Imran',
-      'status': 'Rejected',
+    // },
+    // {
+    //   'topic': 'Fire Saftey',
+    //   'department': 'Safety',
+    //   'requester': 'Imran',
+    //   'status': 'Rejected',
       
-    },
-    {
-      'topic': 'Fire Saftey',
-      'department': 'Safety',
-      'requester': 'Imran',
-      'status': 'Pending',
+    // },
+    // {
+    //   'topic': 'Fire Saftey',
+    //   'department': 'Safety',
+    //   'requester': 'Imran',
+    //   'status': 'Pending',
       
-    },
+    // },
   
   ];
   @override
@@ -116,7 +116,7 @@ class _TrainingRequestScreenState extends State<TrainingRequestScreen> {
             ),
             SizedBox(height: 8),
             Column(
-              children: data.map((entry) {
+              children:data.length==0?[Text("No Training Requests",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),)]: data.map((entry) {
                 return InkWell(
                   onTap: (){},
                   //()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>UserDetailsScreen())),

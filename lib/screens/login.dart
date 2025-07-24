@@ -111,8 +111,8 @@ class _LoginScreenState extends State<LoginScreen> {
              style: TextStyle(color: Colors.white), 
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-                hintText: "Enter your CNIC",
-                labelText: "CNIC",
+                hintText: "Enter your email",
+                labelText: "Email",
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 hintStyle: const TextStyle(color: Colors.white),
                 labelStyle: TextStyle(color: Colors.white),

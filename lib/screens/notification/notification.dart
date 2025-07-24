@@ -20,34 +20,34 @@ class NotificationScreen extends StatelessWidget {
             Text("Notifications"),
             SizedBox(height: defaultPadding),
            
-          _buildNotification(
-            icon: Icons.warning,
-            color: Colors.orange,
-            title: 'New Work Instruction',
-            description: 'Using of Chemical Material...',
-            time: 'Jun 5 2025',
-          ),
-          _buildNotification(
-            icon: Icons.assignment,
-            color: Colors.blue,
-            title: 'Mr. Farlan – Ticket Assigned',
-            description: 'Planter urgently',
-            time: '6h ago',
-          ),
-          _buildNotification(
-            icon: Icons.check_circle,
-            color: Colors.green,
-            title: 'Pending Approval',
-            description: '1 week ago',
-            time: 'May 3025',
-          ),
-          _buildNotification(
-            icon: Icons.notifications,
-            color: Colors.red,
-            title: 'Admin Manager',
-            description: 'Ticket revision resolved',
-            time: '1w ago',
-          ),
+          // _buildNotification(
+          //   icon: Icons.warning,
+          //   color: Colors.orange,
+          //   title: 'New Work Instruction',
+          //   description: 'Using of Chemical Material...',
+          //   time: 'Jun 5 2025',
+          // ),
+          // _buildNotification(
+          //   icon: Icons.assignment,
+          //   color: Colors.blue,
+          //   title: 'Mr. Farlan – Ticket Assigned',
+          //   description: 'Planter urgently',
+          //   time: '6h ago',
+          // ),
+          // _buildNotification(
+          //   icon: Icons.check_circle,
+          //   color: Colors.green,
+          //   title: 'Pending Approval',
+          //   description: '1 week ago',
+          //   time: 'May 3025',
+          // ),
+          // _buildNotification(
+          //   icon: Icons.notifications,
+          //   color: Colors.red,
+          //   title: 'Admin Manager',
+          //   description: 'Ticket revision resolved',
+          //   time: '1w ago',
+          // ),
       
          
           ]

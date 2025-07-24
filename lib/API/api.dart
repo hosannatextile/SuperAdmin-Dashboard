@@ -15,7 +15,7 @@ class ApiHelper{
     final response = await http.post(
       Uri.parse(ApiConstant.loginUrl),
       body: jsonEncode({
-        'cnic': cnic,
+        'email': cnic,
         'password': password,
         'role': 'Super Admin',
         'fcm_token':""

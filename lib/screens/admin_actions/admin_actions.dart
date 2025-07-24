@@ -17,27 +17,27 @@ class _AdminActionsScreenState extends State<AdminActionsScreen> {
   String selectedManager="Select Manager";
   String selectedDepartment="Select Department";
   final List<Map<String, String>> data = [
-    {
-      'task': 'Audit the Data',
-      'assignee': 'Rashid',
-      'manager': 'Zubair',
-      'complete': '12 April 2025',
-      'status':'overdue'
-    },
-    {
-      'task': 'Audit the Data',
-      'assignee': 'Rashid',
-      'manager': 'Zubair',
-      'complete': '12 April 2025',
-      'status':'pending'
-    },
-    {
-      'task': 'Audit the Data',
-      'assignee': 'Rashid',
-      'manager': 'Zubair',
-      'complete': '12 April 2025',
-      'status':'delayed'
-    },
+    // {
+    //   'task': 'Audit the Data',
+    //   'assignee': 'Rashid',
+    //   'manager': 'Zubair',
+    //   'complete': '12 April 2025',
+    //   'status':'overdue'
+    // },
+    // {
+    //   'task': 'Audit the Data',
+    //   'assignee': 'Rashid',
+    //   'manager': 'Zubair',
+    //   'complete': '12 April 2025',
+    //   'status':'pending'
+    // },
+    // {
+    //   'task': 'Audit the Data',
+    //   'assignee': 'Rashid',
+    //   'manager': 'Zubair',
+    //   'complete': '12 April 2025',
+    //   'status':'delayed'
+    // },
   ];
   @override
   Widget build(BuildContext context) {
@@ -220,7 +220,7 @@ class _AdminActionsScreenState extends State<AdminActionsScreen> {
             ),
              SizedBox(height: 8),
             Column(
-              children: data.map((entry) {
+              children:data.length==0?[Text("No Data")]: data.map((entry) {
                 return InkWell(
                  // onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>UserDetailsScreen())),
                   child: Card(
