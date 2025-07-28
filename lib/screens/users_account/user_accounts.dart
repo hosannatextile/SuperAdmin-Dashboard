@@ -103,7 +103,7 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
                   children: userController.allUsers.map((entry) {
                     return InkWell(
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => UserDetailsScreen())),
+                          builder: (context) => UserDetailsScreen(userData: entry,))),
                       child: Card(
                         margin: EdgeInsets.all(8),
                         child: Padding(
