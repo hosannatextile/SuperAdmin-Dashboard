@@ -27,7 +27,7 @@ class UserData {
       this.password,
       this.createdAt,
       this.updatedAt,
-      this.iV});
+      this.iV, this.status});
 
   UserData.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -63,5 +63,40 @@ class UserData {
     data['__v'] = this.iV;
     data['status'] = this.status;
     return data;
+  }
+  
+  /// copyWith method to create a new instance with modified fields
+  UserData copyWith({
+    String? sId,
+    String? fullName,
+    String? mobileNumber,
+    String? cnic,
+    String? email,
+    String? profilePhoto,
+    String? department,
+    String? role,
+    String? username,
+    String? password,
+    String? status,
+    String? createdAt,
+    String? updatedAt,
+    int? iV,
+  }) {
+    return UserData(
+      sId: sId ?? this.sId,
+      fullName: fullName ?? this.fullName,
+      mobileNumber: mobileNumber ?? this.mobileNumber,
+      cnic: cnic ?? this.cnic,
+      email: email ?? this.email,
+      profilePhoto: profilePhoto ?? this.profilePhoto,
+      department: department ?? this.department,
+      role: role ?? this.role,
+      username: username ?? this.username,
+      password: password ?? this.password,
+      status: status ?? this.status,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      iV: iV ?? this.iV,
+    );
   }
 }

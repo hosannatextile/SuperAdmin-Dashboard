@@ -2,8 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:html' as html;
+import 'dart:js_interop';
 
 import 'package:admin/API/api_constant.dart';
+import 'package:admin/Modal/user_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -360,5 +362,40 @@ Future<html.HttpRequest> deleteUserById(String userId) async {
 
   return completer.future;
 }
+
+ Future<http.Response> updateUser(String userId, UserData? updates) async {
+    try {
+      // Ensure at least one field is being updated
+      if (updates == null) {
+       return http.Response('', 400);
+      }
+
+      final url = Uri.parse("${ApiConstant.baseUrl}users/update-user/$userId");
+
+      final response = await http.put(
+        url,
+        headers: {
+          "Content-Type": "application/json",
+          "authorization": "Bearer ${ApiConstant.loginData!.accessToken!}",
+        },
+        body: jsonEncode(updates),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        
+        print(response.body);
+        return response;
+      } else {
+        print(response.body);
+         final data = jsonDecode(response.body);
+        
+        
+      return response;
+      }
+    } catch (e) {
+      return http.Response('', 500);
+    }
+  }
 
 }

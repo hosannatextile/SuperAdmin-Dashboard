@@ -46,36 +46,36 @@ class SideMenu extends StatelessWidget {
           //     if (Navigator.canPop(context)) Navigator.pop(context);
           //   },
           // ),
-          DrawerListTile(
-            title: "Training Requests",
-            svgSrc: "assets/icons/menu_doc.svg",
-            index: 3,
-            selectedIndex: nav.selectedIndex,
-            onTap: () {
-              context.read<NavigationController>().setIndex(3);
-              if (Navigator.canPop(context)) Navigator.pop(context);
-            },
-          ),
-          DrawerListTile(
-            title: "Admin Actions",
-            svgSrc: "assets/icons/menu_store.svg",
-            index: 4,
-            selectedIndex: nav.selectedIndex,
-            onTap: () {
-              context.read<NavigationController>().setIndex(4);
-              if (Navigator.canPop(context)) Navigator.pop(context);
-            },
-          ),
-          DrawerListTile(
-            title: "Notification",
-            svgSrc: "assets/icons/menu_notification.svg",
-            index: 5,
-            selectedIndex: nav.selectedIndex,
-            onTap: () {
-              context.read<NavigationController>().setIndex(5);
-              if (Navigator.canPop(context)) Navigator.pop(context);
-            },
-          ),
+          // DrawerListTile(
+          //   title: "Training Requests",
+          //   svgSrc: "assets/icons/menu_doc.svg",
+          //   index: 3,
+          //   selectedIndex: nav.selectedIndex,
+          //   onTap: () {
+          //     context.read<NavigationController>().setIndex(3);
+          //     if (Navigator.canPop(context)) Navigator.pop(context);
+          //   },
+          // ),
+          // DrawerListTile(
+          //   title: "Admin Actions",
+          //   svgSrc: "assets/icons/menu_store.svg",
+          //   index: 4,
+          //   selectedIndex: nav.selectedIndex,
+          //   onTap: () {
+          //     context.read<NavigationController>().setIndex(4);
+          //     if (Navigator.canPop(context)) Navigator.pop(context);
+          //   },
+          // ),
+          // DrawerListTile(
+          //   title: "Notification",
+          //   svgSrc: "assets/icons/menu_notification.svg",
+          //   index: 5,
+          //   selectedIndex: nav.selectedIndex,
+          //   onTap: () {
+          //     context.read<NavigationController>().setIndex(5);
+          //     if (Navigator.canPop(context)) Navigator.pop(context);
+          //   },
+          // ),
           // DrawerListTile(
           //   title: "Profile",
           //   svgSrc: "assets/icons/menu_profile.svg",
