@@ -147,6 +147,50 @@ class _AddUserScreenState extends State<AddUserScreen> {
                     value: "Operations",
                     child: Text("Operations"),
                   ),
+                  DropdownMenuItem(
+                    value: "Folding",
+                    child: Text("Folding"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Dispatch",
+                    child: Text("Dispatch"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Gate",
+                    child: Text("Gate"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Jigger",
+                    child: Text("Jigger"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Maintainance",
+                    child: Text("Maintainance"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Shade Band",
+                    child: Text("Shade Band"),
+                  ),
+                  
+                  DropdownMenuItem(
+                    value: "Store",
+                    child: Text("Store"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Electrical",
+                    child: Text("Electrical"),
+                  ),
+                  
+                  DropdownMenuItem(
+                    value: "Finishing",
+                    child: Text("Finishing"),
+                  ),
+                  
+                  DropdownMenuItem(
+                    value: "Accounts",
+                    child: Text("Accounts"),
+                  ),
+                  
                 ],
                 onChanged: (value) {
                   
