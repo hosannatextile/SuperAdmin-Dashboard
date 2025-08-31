@@ -344,6 +344,7 @@ Future<html.HttpRequest> deleteUserById(String userId) async {
   request.onLoadEnd.listen((event) {
     if (request.status == 200) {
       completer.complete(request);
+      getAllUsers();
     
     } else {
       completer.completeError('Failed to delete user. Status: ${request.status}, Response: ${request.responseText}');

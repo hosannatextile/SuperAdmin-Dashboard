@@ -166,10 +166,10 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
                                        }
                                     }),
                               ),
-                              // IconButton(onPressed: ()
-                              // {
-                              //   ApiHelper().deleteUserById(entry.sId!);
-                              // }, icon: Icon(Icons.delete))
+                              IconButton(onPressed: ()
+                              {
+                                ApiHelper().deleteUserById(entry.sId!);
+                              }, icon: Icon(Icons.delete))
                             ],
                           ),
                         ),

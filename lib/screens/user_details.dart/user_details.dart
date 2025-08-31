@@ -26,46 +26,11 @@ class UserDetailsScreen extends StatefulWidget {
 
 class _UserDetailsScreenState extends State<UserDetailsScreen> {
   UserController userController = Get.put(UserController());
-  final List<Map<String, String>> data = [
-    {
-      'name': 'Rashid',
-      'cnic': '123-456 7899',
-      'mobile': 'Plant',
-      'level': 'High',
-      "status": "Active"
-    },
-    {
-      'name': 'Imran',
-      'cnic': '123-456 7890',
-      'mobile': 'Warehouse',
-      'level': 'Prioity',
-      "status": "Active" // Typo from original preserved
-    },
-    {
-      'name': 'Ayesha',
-      'cnic': '123-456 7891',
-      'mobile': 'Production',
-      'level': 'Proof Noto',
-      "status": "InActive"
-    },
-    {
-      'name': 'Saiman',
-      'cnic': '123-456 7892',
-      'mobile': 'Dispatch',
-      'level': 'Photo Vioo',
-      "status": "Active"
-    },
-    {
-      'name': 'Nadia',
-      'cnic': '123-456 7893',
-      'mobile': 'Quality',
-      'level': 'View',
-      "status": "Active"
-    },
-  ];
+ 
 
   @override
   Widget build(BuildContext context) {
+    print(widget.userData.profilePhoto);
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
